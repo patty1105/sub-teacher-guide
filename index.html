@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>代課指南｜徐薇英文－瀚銘分校</title>
+
+  <style>
+    :root{
+      --bg1:#070a13;
+      --bg2:#0b1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.04);
+      --text:#eef2ff;
+      --muted: rgba(238,242,255,.72);
+      --line: rgba(255,255,255,.12);
+      --accent:#7aa2ff;
+      --accent2:#7dffcf;
+      --warn:#ffb74d;
+      --shadow: 0 14px 35px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 14px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans TC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1000px 600px at 18% -10%, rgba(122,162,255,.30), transparent 60%),
+        radial-gradient(900px 600px at 90% 10%, rgba(125,255,207,.18), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      line-height:1.75;
+    }
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: 1050px; margin: 0 auto; padding: 26px 18px 64px; }
+
+    /* Header */
+    header{
+      position: sticky; top: 14px; z-index: 50;
+      display:flex; gap:16px; align-items:center; justify-content:space-between;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      background: rgba(12,16,32,.62);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+    .brand{ display:flex; flex-direction:column; gap:2px; padding-left:6px; }
+    .brand b{ font-size: 14px; letter-spacing:.2px; }
+    .brand span{ font-size: 12px; color: var(--muted); }
+
+    nav{ display:flex; gap: 8px; flex-wrap: wrap; justify-content:flex-end; }
+    nav a{
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--text);
+      opacity:.92;
+    }
+    nav a:hover{
+      border-color: var(--line);
+      background: rgba(255,255,255,.06);
+      text-decoration:none;
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 18px;
+      padding: 24px 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position: relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 220px at 20% 20%, rgba(122,162,255,.25), transparent 60%),
+                  radial-gradient(420px 200px at 85% 10%, rgba(125,255,207,.16), transparent 60%);
+      pointer-events:none;
+    }
+    .hero > *{ position: relative; }
+    .hero h1{ margin:0 0 8px; font-size: 28px; letter-spacing:.2px; }
+    .hero p{ margin:0; color: var(--muted); max-width: 88ch; }
+    .chips{ margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap; }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Your content classes (keep same names) */
+    .card{
+      margin-top:18px;
+      padding:18px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .card h3{ margin:0 0 10px; font-size: 18px; }
+    .meta{ margin: -6px 0 0; color: var(--muted); font-size: 13px; }
+
+    .divider{ height:1px; background: var(--line); margin: 14px 0; }
+
+    .steps{ display:grid; gap:12px; margin-top: 12px; }
+    .step{
+      border: 1px solid var(--line);
+      background: var(--card2);
+      border-radius: var(--radius2);
+      padding: 14px;
+    }
+    .step h4{ margin:0 0 6px; font-size: 16px; }
+    .step ol{ margin:8px 0 0; padding-left: 20px; color: var(--muted); }
+    .step ul{ color: var(--muted); }
+
+    .note, .warn{
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 14px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .note{ border-left: 3px solid rgba(125,255,207,.85); }
+    .warn{ border-left: 3px solid rgba(255,183,77,.95); }
+
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    /* Gallery & media */
+    .gallery{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .gallery img{
+      width:100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      display:block;
+      background: rgba(0,0,0,.18);
+    }
+    .ph{
+      border:1px dashed rgba(255,255,255,.22);
+      border-radius: 14px;
+      padding: 16px;
+      background: rgba(255,255,255,.03);
+      color: rgba(238,242,255,.62);
+      text-align:center;
+      min-height: 92px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .videoWrap{
+      margin-top: 12px;
+      border-radius: 14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.22);
+    }
+    .ratio{ position: relative; width:100%; padding-top: 56.25%; }
+    .ratio iframe{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      border:0;
+    }
+
+    /* Small polish */
+    b{ color: rgba(238,242,255,.95); }
+    p{ margin: 10px 0 0; }
+    h4{ letter-spacing:.1px; }
+
+    footer{
+      margin-top: 18px;
+      color: rgba(238,242,255,.60);
+      font-size: 13px;
+      text-align:center;
+      opacity:.95;
+    }
+    .toplink{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(12,16,32,.70);
+      backdrop-filter: blur(12px);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      cursor:pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 820px){
+      header{ position: static; border-radius: var(--radius); }
+      nav{ justify-content:flex-start; }
+      .twoCol{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px){
+      .gallery{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="brand">
+  <b>代課指南（給賢賢版）</b>
+  <span>徐薇英文－瀚銘分校｜H1 / H4</span>
+</div>
+
+      <nav>
+        <a href="#location">地點</a>
+        <a href="#steps">步驟</a>
+        <a href="#schedule">課表</a>
+        <a href="#content">內容</a>
+        <a href="#common-flow">共同流程</a>
+        <a href="#h1-detail">H1</a>
+        <a href="#h3-detail">H4</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>今天代課就照這份做</h1>
+      <p>你主要做： 拿點名本 → 上二樓拿文具考卷 →進教室第一步先開螢幕 → 點名簽名 → 發考卷/監考/播放聽力(H4直接上課) → 改卷訂正 → 貼聯絡單發聯絡簿 → 點名本放回原來的櫃子（重要） (文具/膠水/筆我都放在櫃子裡那一袋 釘書機(粉紅色)在教室的筆筒裡 釘書針不夠旁邊都有。)
+</p>
+
+      <div class="chips">
+        <div class="chip">⏰ H1 14:30–16:30</div>
+        <div class="chip">⏰ H4 16:30–17:30</div>
+        <div class="chip">🖥️ 上課第一步先開螢幕</div>
+
+      </div>
+    </section>
+
+    <main>
+      <!-- ======== 你的內容（完全不刪減）開始 ======== -->
+
+      <section id="location" class="card" style="margin-top:18px;">
+        <h3>地點</h3>
+        <p style="color:var(--muted); margin-top:0;">
+          📍
+          <a href="https://www.google.com/maps?um=1&ie=UTF-8&fb=1&gl=tw&sa=X&geocode=Kdlb8WmUNWg0MaalhwKc7O1y&daddr=300%E6%96%B0%E7%AB%B9%E5%B8%82%E5%8C%97%E5%8D%80%E5%9B%9B%E7%B6%AD%E8%B7%AF77%E8%99%9F"
+             target="_blank" rel="noopener">
+            徐薇英文－瀚銘分校（點我開地圖）
+          </a>
+        </p>
+      </section>
+
+      <section id="steps" class="card" style="margin-top:18px;">
+        <h3>代課步驟</h3>
+        <p class="meta">照這份做就能順利完成：先拿點名本 → 上二樓 → 教室外櫃子拿文具考卷</p>
+
+        <div class="steps">
+          <div class="step">
+            <h4>Step 1｜到櫃台後方櫃子拿點名本</h4>
+            <ol>
+              <li>直接到櫃台，走到櫃台後面的櫃子找「點名本」。</li>
+              <li>點名本有兩本：<b>H1</b> 跟 <b>H4</b>。</li>
+              <li>如果不確定位置：直接問櫃台老師「點名本在哪裡？」並說你是<b>代課老師</b>。</li>
+            </ol>
+
+            <div class="note">
+              ✅ 小提醒：確認這堂課是 H1 還是 H4（避免點錯名）。
+            </div>
+
+            <div class="divider"></div>
+            <h4 style="margin-top:0;">點名本示意（放照片在這）</h4>
+            <div class="gallery">
+              <img src="images/IMG1058.jpg" alt="點名本樣子（H1 / H3）">
+              <img src="images/IMG1059.jpg" alt="點名本樣子（H1 / H3）">
+              <img src="images/IMG1061.jpg" alt="櫃台後櫃子位置">
+            </div>
+          </div>
+
+          <div class="step">
+            <h4>Step 2｜走後面樓梯上二樓 → 右轉第一間教室</h4>
+            <ol>
+              <li>往後面樓梯走到<b>二樓</b>。</li>
+              <li>到二樓後<b>右轉</b>，<b>第一間</b>就是教室。</li>
+              <li>教室外面的櫃子會放<b>所有上課需要的東西</b>（文具、考卷、聯絡單）。</li>
+            </ol>
+
+            <div class="warn">
+              ⚠️ 進教室前：先看門口或櫃子標示，確認班級/時段沒走錯。
+            </div>
+
+            <div class="divider"></div>
+            <h4 style="margin-top:0;">教室與櫃子（放照片/影片在這）</h4>
+            <div class="gallery">
+               <img src="images/IMG_1054.jpg" alt="櫃子位置">
+            </div>
+
+            <div class="videoWrap" style="margin-top:12px;">
+              <div class="ratio">
+                <!-- 如果你有 YouTube 影片，把影片ID換掉 -->
+                <iframe
+                  src="https://www.youtube.com/embed/If-zzSrj-90"
+                  title="代課路線/用品位置示範"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+            <p style="margin-top:10px; color:var(--muted);">
+            </p>
+          </div>
+        </div>
+      </section>
+
+ <div class="step">
+            <h4>Step 3｜進教室開螢幕</h4>
+            <ol>
+              <li>下面有影片教學</li>
+              
+            <div class="videoWrap" style="margin-top:12px;">
+              <div class="ratio">
+                <!-- 如果你有 YouTube 影片，把影片ID換掉 -->
+                <iframe
+                  src="https://www.youtube.com/embed/SVnshPz5wCc"
+                  title="開螢幕教學"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+            <p style="margin-top:10px; color:var(--muted);">
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="schedule" class="card" style="margin-top:18px;">
+        <h3>這次代課課表與時間安排</h3>
+        <p class="meta">先看時間表，心裡有底就不會慌 👍</p>
+
+        <div class="twoCol">
+          <div class="step">
+            <h4>H1 班</h4>
+            <ul style="margin:8px 0 0; padding-left:18px; color:var(--muted);">
+              <li>⏰ 上課時間：<b>14:30 – 16:30</b></li>
+            </ul>
+<div class="note">
+              📌 建議做法：<br>
+              下課 10 分鐘時，先讓學生休息，<br>
+              可以休息一下或貼聯絡單。
+            </div>
+          </div>
+
+          <div class="step">
+            <h4>H4 班</h4>
+            <ul style="margin:8px 0 0; padding-left:18px; color:var(--muted);">
+              <li>⏰ 上課時間：<b>16:30 – 17:30</b></li>
+            </ul>
+
+            
+          </div>
+        </div>
+      </section>
+
+      <section id="content" class="card" style="margin-top:18px;">
+        <h3>課程內容</h3>
+        <p class="meta">重點先講清楚：只要照流程走 👍</p>
+
+                  </div>
+
+      <section id="common-flow" class="card" style="margin-top:18px;">
+        <h3>每一班開始上課的固定流程（一定要做）</h3>
+        <p class="meta">不管 H1 還是 H4，都先照這個順序走</p>
+
+        <div class="steps">
+          <div class="step">
+            <h4>① 先拿點名本點名＋簽名</h4>
+            <ol>
+              <li>一進教室後，第一件事就是拿出點名本。</li>
+              <li>照點名本順序點名學生。</li>
+              <li>點名完成後，在點名本上<b>簽名</b>。</li>
+            </ol>
+
+            <div class="note">
+              📹 點名本操作方式：<br>
+              點名本的使用方式在影片裡講得<b>非常詳細</b>，照影片做就可以，不用擔心。
+            </div>
+          </div>
+
+<div class="videoWrap" style="margin-top:12px;">
+              <div class="ratio">
+                <!-- 如果你有 YouTube 影片，把影片ID換掉 -->
+                <iframe
+                  src="https://www.youtube.com/embed/9tX2Os3Z-4c"
+                  title="點名本及聯絡單說明"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+            <p style="margin-top:10px; color:var(--muted);">
+                          </p>
+          </div>
+        </div>
+      </section>
+
+
+          <div class="step">
+            <h4>② 請學生交聯絡簿</h4>
+            <ol>
+              <li>點名完後，直接請學生把<b>聯絡簿交上來</b>。</li>
+              <li>聯絡單<b>H1</b>可以趁<b>監考期間</b>或<b>中間下課</b>處理，<b>H4<b>可以</b>提早10或15分鐘結束課程貼</b>。</li>
+              <li>建議時間：
+                <ul style="margin:6px 0 0; padding-left:18px;">
+                  <li>監考時間或中間休息時間</li>
+                  <li>下課前 <b>10 分鐘</b></li>
+                  <li>或任何你有空檔的時間，趕快貼一貼即可</li>
+                </ul>
+              </li>
+            </ol>
+
+            <div class="note">
+              ✅ 小技巧：<br>
+              監考時學生都在寫考卷，是貼聯絡單最不被打擾的時候。
+            </div>
+          </div>
+        </div>
+
+        <div class="warn" style="margin-top:12px;">
+          ⚠️ 重點提醒：<br>
+          ・每一班「一開始一定要先點名＋簽名」<br>
+          ・聯絡簿不用急，找空檔處理即可
+        </div>
+      </section>
+
+      <section id="h1-detail" class="card" style="margin-top:18px;">
+        <h3>H1 班｜詳細流程（14:30–16:30）</h3>
+        <p class="meta">重點：H1 Lesson 3 大份考試卷＋聽力螢幕放音檔＋訂正＋上student book p.69+貼聯絡簿發還</p>
+
+        <div class="steps">
+          <div class="step">
+            <h4>1）考前 3–5 分鐘快速複習（可做可不做）</h4>
+            <ol>
+              <li>考的是<b>「H1 Lesson 3 大份考試卷」</b>（前面櫃子影片左邊那格）。</li>
+              <li>可以直接看考卷內容幫他們複習：
+                <ul style="margin:6px 0 0; padding-left:18px; color:var(--muted);">
+                  <li>你用<b>中文提問</b>，叫他們用<b>英文回答</b></li>
+                  <li>他們通常不會（正常）➡️ 你就<b>直接唸英文</b>，叫他們<b>跟著複誦一次</b></li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+
+          <div class="step">
+            <h4>2）開始考試：安排座位 → 發卷 → 寫名字 → 考試</h4>
+            <ol>
+              <li>叫他們坐<b>考試位置</b>，重點是<b>不要坐在一起</b>。</li>
+              <li>發「考試卷一份」(你可以把每份考卷上面再釘兩個釘書針)，請他們先<b>寫名字</b>。</li>
+              
+            </ol>
+
+            <div class="warn">
+              ⚠️ 班級秩序：<br>
+              如果他們開始講話或偷看，直接<b>嚴格一點沒問題</b>（他們考試很愛講話發出聲音 直接罵就好）。
+            </div>
+          </div>
+
+          <div class="step">
+            <h4>3）聽力：用大螢幕播音檔（放兩次）＋部分大題要你唸</h4>
+            <ol>
+              <li>聽力音檔要用<b>大螢幕</b>播放（下面會放影片示範）(這份考卷是按<b>H1 Lesson 3 Class8</b>)。</li>
+              <li>音檔每段<b>放兩次</b>。</li>
+              <li>有幾個<b>大題沒有音檔</b>，但還是要唸給他們聽（我有寫在答案卷上，有些題目我有<b>改考的方式</b>）。</li>
+            </ol>
+
+            <div class="note">
+              📝 貼聯絡單時機：<br>
+              他們在聽音檔時，你可以趁機<b>趕快貼聯絡單</b>（最不會被打擾）。
+            </div>
+
+           <div class="videoWrap" style="margin-top:12px;">
+  <div class="ratio">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/YHwQF6zx0Ro"
+      title="H3 期末考音檔播放示範"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+            <p style="margin-top:10px; color:var(--muted);">
+                          </p>
+          </div>
+
+          <div class="step">
+            <h4>4）收卷 → 改考卷 → 叫名字訂正</h4>
+            <ol>
+              <li>考完先<b>收考卷</b>，請他們<b>坐好不要吵</b>。</li>
+              <li>你開始改考卷 扣分卷上有（他們會吵很正常，直接壓住秩序就好 兇起來）。</li>
+              <li>改完一張就<b>登記成績</b>(成績登記表在點名本上，點名表後面幾頁)<b>然後叫名字</b>，讓他來拿考卷並開始<b>訂正</b>。</li>
+              <li>訂正方式：
+                <ul style="margin:6px 0 0; padding-left:18px; color:var(--muted);">
+                  <li>他們自己找答案</li>
+                  <li>錯的<b>罰寫兩次</b></li>
+                  <li>很多人會發呆 ➜ 看到沒訂正的就直接提醒/罵一下（不然會拖很久）</li>
+                </ul>
+              </li>
+              <li>訂正完：用<b>藍筆打勾</b>，考卷讓他們<b>自己收著</b>。</li>
+            </ol>
+
+            <div class="note">
+              ✅ 如果大家訂正完還有很多時間可以休息十分鐘，時間不夠就直接上課，考試96分以上的我會給獎勵，但我怕你會很混亂所以你跟他們說等我回來再跟我拿獎勵 
+            </div>
+          </div>
+
+          <div class="step">
+            <h4>5）上課:Student Book p.69 </h4>
+            <ol>
+              <li>螢幕步驟：
+                <ul style="margin:6px 0 0; padding-left:18px; color:var(--muted);">
+                  <li>✅ H1 Lesson 4</li>
+                  <li>✅ class幾你要<b>自己找一下</b>會在<b>偏後面可能6.7</b></li>
+                </ul>
+              </li>
+              <li>開始上課，你想怎麼上都可以，主要讓他們會唸跟知道意思</li>
+              </div>
+
+           <div class="step">
+             <h4>6）聯絡簿發回去(如果你前面貼完就發了那課上完就可以讓他們直接下課) </h4>
+            </ul>
+            </div>
+
+       
+
+            <div class="warn">
+              ⏱️ 下課時間：可以提早 <b>2–3 分鐘</b>下課，但不要拖到，避免家長在等。
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="h3-detail" class="card" style="margin-top:18px;">
+        <h3>H4 班｜詳細流程（16:30–17:30）</h3>
+        <p class="meta">重點：上Student Book p.1-p.5+貼聯絡單釘作業上去 </p>
+
+        <div class="steps">
+         
+          <div class="step">
+            <h4>1）上Student Book p.1-p.5</h4>
+            <ol>
+              <li>螢幕點<b>H4 Lesson 1 Class1</b>。</li>
+              <li>就讓他們跟著唸主要教會後面單字部分。</li>
+                          </ol>
+          </div>
+
+          <div class="step">
+            <h4>2）提前10-15分鐘結束貼聯絡單跟作業</h4>
+            <ol>
+              <li>可以讓他們玩螢幕的遊戲(如果太吵就叫他們回位置坐好)</li>
+              <li>作業是資料夾裡的那張寫單字的(直接對折釘在聯絡簿上)</li>
+              <li>聯絡單貼好發還，提醒他們一定要寫作業，我回來會檢查</li>
+              <li>下課你就可以直接走了，外師會接著上課</li>
+            </ol>
+            </div>
+
+<div class="step">
+            <h4>3）點名本放回一樓櫃子</h4>
+                       </div>
+
+
+           
+      <!-- ======== 你的內容（完全不刪減）結束 ======== -->
+    </main>
+
+    <footer>
+      © <span id="year"></span> 代課指南｜做完收尾就走人（點名本放回原位！）
+    </footer>
+  </div>
+
+  <button class="toplink" onclick="window.scrollTo({top:0, behavior:'smooth'})">回到頂部 ↑</button>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+
